@@ -1,0 +1,299 @@
+@import "tailwindcss";
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #FAFAF7;
+  --foreground: #1A1A1A;
+
+  --primary: #9B1B30; /* Luxury Red */
+  --primary-foreground: #FFFFFF;
+  
+  --secondary: #D4AF37; /* Luxury Gold */
+  --secondary-foreground: #FFFFFF;
+  
+  --accent: #123524; /* Emerald Green */
+  --accent-foreground: #FFFFFF;
+
+  --card: #FFFFFF;
+  --card-foreground: #1A1A1A;
+  
+  --muted: #F3EDE4;
+  --muted-foreground: #6B6560;
+  
+  --border: #E8E0D5;
+  
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: #111111;
+  --foreground: #F5F0EB;
+
+  --primary: #B22234; /* Bright Luxury Red */
+  --primary-foreground: #FFFFFF;
+  
+  --secondary: #D4AF37; /* Luxury Gold */
+  --secondary-foreground: #1A1A1A;
+  
+  --accent: #1A4D35; /* Emerald Green */
+  --accent-foreground: #FFFFFF;
+
+  --card: #1A1A1A;
+  --card-foreground: #F5F0EB;
+  
+  --muted: #2A2A2A;
+  --muted-foreground: #9C9590;
+  
+  --border: #333333;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  
+  --radius: var(--radius);
+
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-playfair);
+}
+
+/* ===== Base Styles ===== */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ===== Custom Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--muted);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* ===== Utility Classes ===== */
+.soft-shadow {
+  box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.08);
+}
+
+.dark .soft-shadow {
+  box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.4);
+}
+
+.premium-shadow {
+  box-shadow: 0 8px 40px -8px rgba(196, 30, 58, 0.15);
+}
+
+.dark .premium-shadow {
+  box-shadow: 0 8px 40px -8px rgba(231, 76, 94, 0.2);
+}
+
+/* ===== Gradient Text ===== */
+.text-gradient-red {
+  background: linear-gradient(135deg, #C41E3A, #8B0000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dark .text-gradient-red {
+  background: linear-gradient(135deg, #E74C5E, #FF6B6B);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #B8860B, #DAA520);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== Glassmorphism ===== */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass {
+  background: rgba(26, 26, 26, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ===== Parallax Background ===== */
+.parallax-bg {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media (max-width: 768px) {
+  .parallax-bg {
+    background-attachment: scroll;
+  }
+}
+
+/* ===== Section Divider ===== */
+.section-divider {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  border-radius: 2px;
+}
+
+.dark .section-divider {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+}
+
+/* ===== Hover Lift Effect ===== */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px -12px color-mix(in srgb, var(--primary) 20%, transparent);
+}
+
+/* ===== Image Overlay ===== */
+.image-overlay {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-overlay::before,
+.image-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.image-overlay::before {
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 60%);
+  opacity: 1;
+}
+
+.image-overlay::after {
+  background: linear-gradient(to top, color-mix(in srgb, var(--primary) 80%, transparent) 0%, rgba(0,0,0,0.1) 60%);
+  opacity: 0;
+}
+
+.image-overlay:hover::before {
+  opacity: 0;
+}
+
+.image-overlay:hover::after {
+  opacity: 1;
+}
+
+/* ===== Animated Underline ===== */
+.animated-underline {
+  position: relative;
+}
+
+.animated-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: width 0.3s ease;
+}
+
+.animated-underline:hover::after {
+  width: 100%;
+}
+
+/* ===== Keyframe Animations ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--primary) 15%, transparent) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
